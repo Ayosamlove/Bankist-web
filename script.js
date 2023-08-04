@@ -133,39 +133,68 @@ const handleHover = function (e) {
 		logo.style.opacity = this;
 	}
 };
-
-//Sticky Navigation
-const initialCoords = section1.getBoundingClientRect();
-
-window.addEventListener('scroll', function (e) {
-	if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
-	else nav.classList.remove('sticky');
-});
-
-// Passing "argument" into handler
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
 
+//Sticky Navigation
+// const initialCoords = section1.getBoundingClientRect();
+
+// window.addEventListener('scroll', function (e) {
+// 	if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+// 	else nav.classList.remove('sticky');
+// });
+
+//Sticky Navigation: Intersection observer API
+// const obsCallback = function (entries, observer) {
+// 	entries.forEach((entry) => {
+// 		console.log(entry);
+// 	});
+// };
+// const obsOptions = {
+// 	root: null,
+// 	threshold: [0, 0.2],
+// };
+
+// const observer = new IntersectionObserver(obsCallback, obsOptions);
+// observer.observe(section1);
+const navHeight = nav.getBoundingClientRect().height;
+const stickyNav = function (entries) {
+	const [entry] = entries;
+	if (!entry.isIntersecting) nav.classList.add('sticky');
+	else nav.classList.remove('sticky');
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+	root: null,
+	threshold: 0,
+	rootMargin: `-${navHeight}px`,
+});
+headerObserver.observe(header);
+
+//cookies
+// Passing "argument" into handler
+
+//cookies
 //creating and inserting elements
 //.insertAdjacentHTML
-const message = document.createElement('div');
-message.classList.add('cookie-message');
-// message.textContent = 'We use cookies for improved performance and analytics.';
-message.innerHTML =
-	'We use cookies for improved performance and analytics. <button class = "btn btn--close-cookie">Got it!</button>';
+// const message = document.createElement('div');
+// message.classList.add('cookie-message');
+// // message.textContent = 'We use cookies for improved performance and analytics.';
+// message.innerHTML =
+// 	'We use cookies for improved performance and analytics. <button class = "btn btn--close-cookie">Got it!</button>';
 
-// header.prepend(message);
-header.append(message);
-// header.before(message);
-// header.after(message);
+// // header.prepend(message);
+// header.append(message);
+// // header.before(message);
+// // header.after(message);
 
-//delete elements
-document
-	.querySelector('.btn--close-cookie')
-	.addEventListener('click', function () {
-		// message.remove();
-		message.parentElement.removeChild(message);
-	});
+// //delete elements
+// document
+// 	.querySelector('.btn--close-cookie')
+// 	.addEventListener('click', function () {
+// 		// message.remove();
+// 		message.parentElement.removeChild(message);
+// 	});
 
 // styles
 // message.style.backgroundColor = '#37383d';
