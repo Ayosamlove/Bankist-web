@@ -135,7 +135,12 @@ const handleHover = function (e) {
 };
 
 //Sticky Navigation
-window.addEventListener('scroll', function (e) {});
+const initialCoords = section1.getBoundingClientRect();
+
+window.addEventListener('scroll', function (e) {
+	if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+	else nav.classList.remove('sticky');
+});
 
 // Passing "argument" into handler
 nav.addEventListener('mouseover', handleHover.bind(0.5));
