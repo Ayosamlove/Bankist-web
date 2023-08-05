@@ -101,7 +101,7 @@ btnScrollTo.addEventListener('click', (e) => {
 // });
 
 //Event Delegation way
-tabsContainer.addEventListener('click', function (e) {
+tabsContainer.addEventListener('click', (e) => {
 	const clicked = e.target.closest('.operations__tab');
 
 	// Guard clause
