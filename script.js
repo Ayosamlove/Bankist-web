@@ -298,9 +298,8 @@ slider();
 //cookies
 // Passing "argument" into handler
 
-//cookies
-//creating and inserting elements
-//.insertAdjacentHTML
+// creating and inserting elements
+
 // const message = document.createElement('div');
 // message.classList.add('cookie-message');
 // // message.textContent = 'We use cookies for improved performance and analytics.';
